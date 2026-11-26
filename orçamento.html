@@ -1,0 +1,806 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANEJA+ | Organização Financeira</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --azul: #173448;
+    --verde: #199783;
+    --verde-claro: #e0f4ee;
+    --amarelo: #f8b943;
+    --texto: #173448;
+    --cinza: #687b86;
+    --borda: #dce9e6;
+    --fundo: #f7faf9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--texto);
+    background: white;
+}
+
+/* CABEÇALHO */
+
+header {
+    min-height: 68px;
+    padding: 0 5%;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--verde);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: #8de0ca;
+}
+
+.menu-mobile {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+/* CONTEÚDO */
+
+.container {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+/* APRESENTAÇÃO */
+
+.apresentacao {
+    padding: 42px 0 28px;
+}
+
+.sobretitulo {
+    color: var(--verde);
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+h1 {
+    font-size: clamp(32px, 4vw, 43px);
+    color: var(--azul);
+    margin-bottom: 13px;
+}
+
+.descricao {
+    color: var(--cinza);
+    font-size: 18px;
+    max-width: 760px;
+    line-height: 1.6;
+}
+
+/* ÁREA DO ORÇAMENTO */
+
+.area-orcamento {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 25px;
+    align-items: start;
+    padding-bottom: 25px;
+}
+
+.painel {
+    background: white;
+    border: 2px solid var(--borda);
+    border-radius: 22px;
+    padding: 27px;
+}
+
+.painel h2 {
+    font-size: 21px;
+    margin-bottom: 23px;
+    color: var(--azul);
+}
+
+/* RENDA */
+
+.campo-renda {
+    margin-bottom: 25px;
+}
+
+.campo-renda label,
+.campo-despesa label {
+    display: block;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+input {
+    width: 100%;
+    border: 2px solid var(--borda);
+    border-radius: 10px;
+    padding: 13px 15px;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    color: var(--azul);
+    background: white;
+}
+
+input:focus {
+    border-color: var(--verde);
+}
+
+input::placeholder {
+    color: #a0adb3;
+}
+
+/* DESPESAS */
+
+.subtitulo {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--verde);
+    margin-bottom: 17px;
+}
+
+.lista-despesas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+.campo-despesa {
+    min-width: 0;
+}
+
+.campo-despesa label {
+    font-size: 14px;
+}
+
+/* RESUMO */
+
+.resumo {
+    background: var(--azul);
+    color: white;
+    border-radius: 22px;
+    padding: 27px;
+}
+
+.resumo h2 {
+    font-size: 21px;
+    margin-bottom: 22px;
+}
+
+.resumo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.17);
+}
+
+.resumo-item:last-of-type {
+    border-bottom: none;
+}
+
+.resumo-item span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #c9d9df;
+}
+
+.resumo-item strong {
+    font-size: 19px;
+    white-space: nowrap;
+}
+
+.simbolo {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--verde);
+    font-size: 17px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.simbolo.menos {
+    background: var(--amarelo);
+    color: var(--azul);
+}
+
+.saldo {
+    margin-top: 12px;
+    padding: 20px;
+    background: rgba(255,255,255,.10);
+    border-radius: 14px;
+}
+
+.saldo strong {
+    color: #69dfb4;
+    font-size: 27px;
+}
+
+.saldo.negativo strong {
+    color: #ff9b91;
+}
+
+.texto-saldo {
+    display: block;
+    margin-top: 9px;
+    font-size: 12px;
+    color: #c9d9df;
+}
+
+/* DICA */
+
+.dica {
+    background: var(--verde-claro);
+    border-radius: 15px;
+    padding: 17px 20px;
+    margin-top: 18px;
+}
+
+.dica strong {
+    color: var(--verde);
+    font-size: 14px;
+}
+
+.dica p {
+    color: var(--azul);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 7px;
+    line-height: 1.5;
+}
+
+/* BOTÕES */
+
+.botoes {
+    display: flex;
+    gap: 13px;
+    margin-top: 22px;
+}
+
+.botao {
+    flex: 1;
+    padding: 15px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.salvar {
+    background: var(--verde);
+    color: white;
+}
+
+.salvar:hover {
+    background: #117d6c;
+}
+
+.limpar {
+    background: #edf2f3;
+    color: var(--azul);
+}
+
+.limpar:hover {
+    background: #dce6e8;
+}
+
+.mensagem {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    background: var(--verde-claro);
+    color: #117d6c;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    color: var(--cinza);
+    font-size: 12px;
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width: 800px) {
+    .area-orcamento {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        min-height: 65px;
+    }
+
+    .menu-mobile {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: var(--azul);
+        padding: 20px 5%;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav.aberto {
+        display: flex;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .apresentacao {
+        padding-top: 32px;
+    }
+
+    .descricao {
+        font-size: 16px;
+    }
+
+    .painel,
+    .resumo {
+        padding: 21px;
+    }
+
+    .lista-despesas {
+        grid-template-columns: 1fr;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    .botao {
+        width: 100%;
+    }
+
+    .resumo-item strong {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="#inicio" class="logo">
+        <span class="logo-icon">R$</span>
+        PLANEJA+
+    </a>
+
+    <button class="menu-mobile" id="menuMobile">☰</button>
+
+    <nav id="navegacao">
+        <a href="inicio.html">Início</a>
+        <a href="metas.html">Metas</a>
+        <a href="dicas.html">Dicas</a>
+        <a href="#organizacao">Orçamento</a>
+    </nav>
+
+</header>
+
+<main class="container" id="inicio">
+
+    <section class="apresentacao">
+
+        <p class="sobretitulo">ORGANIZAÇÃO FINANCEIRA</p>
+
+        <h1>Organize seu dinheiro com clareza.</h1>
+
+        <p class="descricao">
+            Registre sua renda e suas despesas para entender
+            como o dinheiro é usado durante o mês.
+        </p>
+
+    </section>
+
+    <section class="area-orcamento" id="organizacao">
+
+        <!-- FORMULÁRIO -->
+
+        <div class="painel">
+
+            <h2>MEU ORÇAMENTO MENSAL</h2>
+
+            <div class="campo-renda">
+
+                <label for="renda">Renda mensal total</label>
+
+                <input
+                    type="number"
+                    id="renda"
+                    placeholder="Ex: 2500,00"
+                    min="0"
+                    step="0.01"
+                    value="2500"
+                >
+
+            </div>
+
+            <p class="subtitulo">Despesas por categoria</p>
+
+            <div class="lista-despesas">
+
+                <div class="campo-despesa">
+                    <label for="alimentacao">Alimentação</label>
+                    <input type="number" id="alimentacao" value="700" min="0" step="0.01">
+                </div>
+
+                <div class="campo-despesa">
+                    <label for="moradia">Moradia</label>
+                    <input type="number" id="moradia" value="600" min="0" step="0.01">
+                </div>
+
+                <div class="campo-despesa">
+                    <label for="contas">Contas de casa</label>
+                    <input type="number" id="contas" value="250" min="0" step="0.01">
+                </div>
+
+                <div class="campo-despesa">
+                    <label for="transporte">Transporte</label>
+                    <input type="number" id="transporte" value="250" min="0" step="0.01">
+                </div>
+
+                <div class="campo-despesa">
+                    <label for="saude">Saúde e educação</label>
+                    <input type="number" id="saude" value="250" min="0" step="0.01">
+                </div>
+
+                <div class="campo-despesa">
+                    <label for="outras">Outras despesas</label>
+                    <input type="number" id="outras" value="150" min="0" step="0.01">
+                </div>
+
+            </div>
+
+            <div class="botoes">
+
+                <button class="botao salvar" onclick="salvarOrcamento()">
+                    SALVAR ORÇAMENTO
+                </button>
+
+                <button class="botao limpar" onclick="limparCampos()">
+                    LIMPAR CAMPOS
+                </button>
+
+            </div>
+
+            <div class="mensagem" id="mensagem">
+                Orçamento salvo com sucesso!
+            </div>
+
+        </div>
+
+        <!-- RESUMO -->
+
+        <div>
+
+            <section class="resumo">
+
+                <h2>RESUMO DO MÊS</h2>
+
+                <div class="resumo-item">
+
+                    <div>
+                        <span>RENDA TOTAL</span>
+                        <strong id="totalRenda">R$ 2.500,00</strong>
+                    </div>
+
+                    <span class="simbolo">+</span>
+
+                </div>
+
+                <div class="resumo-item">
+
+                    <div>
+                        <span>DESPESAS TOTAIS</span>
+                        <strong id="totalDespesas">R$ 2.200,00</strong>
+                    </div>
+
+                    <span class="simbolo menos">−</span>
+
+                </div>
+
+                <div class="saldo" id="caixaSaldo">
+
+                    <div class="resumo-item">
+
+                        <div>
+                            <span>SALDO DISPONÍVEL</span>
+                            <strong id="saldo">R$ 300,00</strong>
+                        </div>
+
+                    </div>
+
+                    <span class="texto-saldo">Renda − despesas</span>
+
+                </div>
+
+            </section>
+
+            <aside class="dica" id="dicas">
+
+                <strong>DICA:</strong>
+
+                <p>
+                    Anote também os pequenos gastos do dia a dia.
+                </p>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    Projeto de Administração • Centro de Ensino Cidade Operária 2 • São Luís – MA
+</footer>
+
+<script>
+
+// MENU MOBILE
+
+const menuMobile = document.getElementById('menuMobile');
+const navegacao = document.getElementById('navegacao');
+
+menuMobile.addEventListener('click', function() {
+
+    navegacao.classList.toggle('aberto');
+
+    menuMobile.textContent =
+        navegacao.classList.contains('aberto') ? '✕' : '☰';
+
+});
+
+navegacao.querySelectorAll('a').forEach(link => {
+
+    link.addEventListener('click', function() {
+        navegacao.classList.remove('aberto');
+        menuMobile.textContent = '☰';
+    });
+
+});
+
+// CAMPOS DO ORÇAMENTO
+
+const campos = [
+    'renda',
+    'alimentacao',
+    'moradia',
+    'contas',
+    'transporte',
+    'saude',
+    'outras'
+];
+
+function obterValor(id) {
+
+    const valor = parseFloat(document.getElementById(id).value);
+
+    return Number.isFinite(valor) && valor > 0 ? valor : 0;
+
+}
+
+// FORMATAÇÃO DE MOEDA
+
+function moeda(valor) {
+
+    return valor.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
+}
+
+// CALCULAR ORÇAMENTO
+
+function calcularOrcamento() {
+
+    const renda = obterValor('renda');
+
+    const despesas =
+        obterValor('alimentacao') +
+        obterValor('moradia') +
+        obterValor('contas') +
+        obterValor('transporte') +
+        obterValor('saude') +
+        obterValor('outras');
+
+    const saldo = renda - despesas;
+
+    document.getElementById('totalRenda').textContent =
+        moeda(renda);
+
+    document.getElementById('totalDespesas').textContent =
+        moeda(despesas);
+
+    document.getElementById('saldo').textContent =
+        moeda(saldo);
+
+    const caixaSaldo = document.getElementById('caixaSaldo');
+
+    if (saldo < 0) {
+        caixaSaldo.classList.add('negativo');
+    } else {
+        caixaSaldo.classList.remove('negativo');
+    }
+
+}
+
+// ATUALIZAÇÃO AUTOMÁTICA
+
+campos.forEach(id => {
+
+    document.getElementById(id).addEventListener('input', function() {
+
+        calcularOrcamento();
+
+        document.getElementById('mensagem').style.display = 'none';
+
+    });
+
+});
+
+// SALVAR ORÇAMENTO
+
+function salvarOrcamento() {
+
+    const dados = {};
+
+    campos.forEach(id => {
+
+        dados[id] = document.getElementById(id).value;
+
+    });
+
+    localStorage.setItem('planeja_orcamento', JSON.stringify(dados));
+
+    const mensagem = document.getElementById('mensagem');
+
+    mensagem.textContent = 'Orçamento salvo com sucesso!';
+
+    mensagem.style.display = 'block';
+
+}
+
+// CARREGAR ORÇAMENTO SALVO
+
+function carregarOrcamento() {
+
+    const dadosSalvos = localStorage.getItem('planeja_orcamento');
+
+    if (dadosSalvos) {
+
+        try {
+
+            const dados = JSON.parse(dadosSalvos);
+
+            campos.forEach(id => {
+
+                if (dados[id] !== undefined) {
+                    document.getElementById(id).value = dados[id];
+                }
+
+            });
+
+        } catch (erro) {
+
+            localStorage.removeItem('planeja_orcamento');
+
+        }
+
+    }
+
+    calcularOrcamento();
+
+}
+
+// LIMPAR CAMPOS
+
+function limparCampos() {
+
+    const confirmar = confirm(
+        'Deseja realmente limpar todos os campos do orçamento?'
+    );
+
+    if (!confirmar) return;
+
+    campos.forEach(id => {
+
+        document.getElementById(id).value = '';
+
+    });
+
+    localStorage.removeItem('planeja_orcamento');
+
+    document.getElementById('mensagem').style.display = 'none';
+
+    calcularOrcamento();
+
+}
+
+// INICIAR SISTEMA
+
+carregarOrcamento();
+
+</script>
+
+</body>
+</html>

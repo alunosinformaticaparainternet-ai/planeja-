@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANEJA+ | Planejamento e Metas</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --azul: #173448;
+    --verde: #199783;
+    --verde-claro: #e0f4ee;
+    --amarelo: #f8b943;
+    --cinza: #687b86;
+    --borda: #dce9e6;
+    --fundo: #f7faf9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: white;
+    color: var(--azul);
+}
+
+/* CABEÇALHO */
+
+header {
+    min-height: 68px;
+    padding: 0 5%;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo-icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--verde);
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: #8de0ca;
+}
+
+.menu-mobile {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* CONTEÚDO */
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+/* TÍTULO */
+
+.apresentacao {
+    padding: 42px 0 28px;
+}
+
+.sobretitulo {
+    color: var(--verde);
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: clamp(32px, 4vw, 43px);
+    margin-bottom: 12px;
+    color: var(--azul);
+}
+
+.descricao {
+    color: var(--cinza);
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* ÁREA PRINCIPAL */
+
+.conteudo-principal {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 25px;
+    align-items: start;
+    padding-bottom: 30px;
+}
+
+/* FORMULÁRIO */
+
+.formulario {
+    background: white;
+    border: 2px solid var(--borda);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.formulario h2,
+.minhas-metas h2 {
+    font-size: 21px;
+    margin-bottom: 23px;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 2px solid var(--borda);
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--azul);
+    background: white;
+}
+
+.campo input:focus {
+    border-color: var(--verde);
+}
+
+.campo input::placeholder {
+    color: #a0adb3;
+}
+
+.botao-adicionar {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: var(--verde);
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.botao-adicionar:hover {
+    background: #117d6c;
+}
+
+/* MINHAS METAS */
+
+.minhas-metas {
+    background: var(--fundo);
+    border-radius: 20px;
+    padding: 25px;
+    border: 2px solid var(--borda);
+}
+
+.lista-metas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.meta {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 19px;
+}
+
+.meta-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.meta h3 {
+    font-size: 16px;
+    color: var(--azul);
+}
+
+.porcentagem {
+    color: var(--verde);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.valor-meta {
+    font-size: 14px;
+    color: var(--cinza);
+    margin-bottom: 12px;
+}
+
+.barra-fundo {
+    height: 11px;
+    width: 100%;
+    background: #e8eeee;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.barra-progresso {
+    height: 100%;
+    background: var(--verde);
+    border-radius: 20px;
+    transition: width .4s;
+}
+
+.prazo-meta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--cinza);
+}
+
+/* BOTÕES DAS METAS */
+
+.acoes-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.botao-valor {
+    border: none;
+    background: var(--verde);
+    color: white;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.botao-valor:hover {
+    background: #117d6c;
+}
+
+.botao-excluir {
+    border: none;
+    background: transparent;
+    color: #d65d52;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.botao-excluir:hover {
+    text-decoration: underline;
+}
+
+.vazio {
+    color: var(--cinza);
+    font-size: 14px;
+    text-align: center;
+    padding: 25px 10px;
+}
+
+/* DICA DO DIA */
+
+.dica-dia {
+    background: var(--verde-claro);
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icone-dica {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.dica-dia strong {
+    color: var(--verde);
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.dica-dia p {
+    color: var(--azul);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* RODAPÉ */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--azul);
+    color: white;
+    font-size: 12px;
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width: 800px) {
+    .conteudo-principal {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        min-height: 65px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .menu-mobile {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: var(--azul);
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav.aberto {
+        display: flex;
+    }
+
+    .apresentacao {
+        padding: 30px 0;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .descricao {
+        font-size: 16px;
+    }
+
+    .formulario,
+    .minhas-metas {
+        padding: 20px;
+    }
+
+    .meta {
+        padding: 15px;
+    }
+
+    .meta h3 {
+        font-size: 14px;
+    }
+
+    .dica-dia {
+        padding: 17px;
+        align-items: flex-start;
+    }
+
+    .dica-dia p {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <span class="logo-icone">R$</span>
+        PLANEJA+
+    </a>
+
+    <button class="menu-mobile" id="menuMobile">☰</button>
+
+    <nav id="navegacao">
+        <a href="inicio.html">Início</a>
+        <a href="metas.html">Metas</a>
+        <a href="dicas.html">Dicas</a>
+        <a href="organizacao.html">Orçamento</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <section class="apresentacao">
+        <p class="sobretitulo">PLANEJAMENTO E METAS</p>
+        <h1>Organize suas finanças e realize seus objetivos</h1>
+    </section>
+
+    <section class="conteudo-principal">
+
+        <div class="formulario">
+
+            <h2>Criar nova meta</h2>
+
+            <form id="formMeta">
+
+                <div class="campo">
+                    <label for="nomeMeta">Nome da meta</label>
+                    <input type="text" id="nomeMeta"
+                    placeholder="Ex.: Reserva de emergência" required>
+                </div>
+
+                <div class="campo">
+                    <label for="valorMeta">Valor da meta (R$)</label>
+                    <input type="number" id="valorMeta"
+                    placeholder="Ex.: 1.000" min="0.01"
+                    step="0.01" required>
+                </div>
+
+                <div class="campo">
+                    <label for="valorGuardado">Valor já guardado (R$)</label>
+                    <input type="number" id="valorGuardado"
+                    placeholder="Ex.: 300" min="0"
+                    step="0.01" value="0" required>
+                </div>
+
+                <div class="campo">
+                    <label for="prazo">Prazo</label>
+                    <input type="text" id="prazo"
+                    placeholder="Ex.: Dezembro/2026">
+                </div>
+
+                <button type="submit" class="botao-adicionar">
+                    ADICIONAR META
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="minhas-metas">
+
+            <h2>Minhas metas</h2>
+
+            <div class="lista-metas" id="listaMetas"></div>
+
+        </div>
+
+    </section>
+
+    <section class="dica-dia">
+
+        <div class="icone-dica">!</div>
+
+        <div>
+            <strong>DICA DO DIA</strong>
+            <p>
+                Antes de comprar, pergunte:
+                “eu preciso disso agora?”
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    Projeto de Administração • Centro de Ensino Cidade Operária 2 • São Luís – MA
+</footer>
+
+<script>
+
+// MENU MOBILE
+
+const menuMobile = document.getElementById('menuMobile');
+const navegacao = document.getElementById('navegacao');
+
+menuMobile.addEventListener('click', function() {
+    navegacao.classList.toggle('aberto');
+
+    menuMobile.textContent =
+        navegacao.classList.contains('aberto') ? '✕' : '☰';
+});
+
+navegacao.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function() {
+        navegacao.classList.remove('aberto');
+        menuMobile.textContent = '☰';
+    });
+});
+
+// METAS FINANCEIRAS
+
+const metasIniciais = [
+    {
+        id: 1,
+        nome: 'Reserva para imprevistos',
+        valor: 1000,
+        guardado: 300,
+        prazo: ''
+    },
+    {
+        id: 2,
+        nome: 'Quitar dívida do cartão',
+        valor: 1500,
+        guardado: 450,
+        prazo: ''
+    },
+    {
+        id: 3,
+        nome: 'Viagem em família',
+        valor: 2000,
+        guardado: 800,
+        prazo: ''
+    }
+];
+
+let metas = [];
+
+// FORMATAÇÃO DE MOEDA
+
+function formatarMoeda(valor) {
+    return Number(valor).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+}
+
+// SALVAR NO NAVEGADOR
+
+function salvarMetas() {
+    localStorage.setItem('planeja_metas', JSON.stringify(metas));
+}
+
+// CARREGAR METAS
+
+function carregarMetas() {
+    const dados = localStorage.getItem('planeja_metas');
+
+    if (dados !== null) {
+        try {
+            const dadosConvertidos = JSON.parse(dados);
+
+            metas = Array.isArray(dadosConvertidos)
+                ? dadosConvertidos
+                : metasIniciais.map(meta => ({...meta}));
+
+        } catch (erro) {
+            metas = metasIniciais.map(meta => ({...meta}));
+        }
+    } else {
+        metas = metasIniciais.map(meta => ({...meta}));
+        salvarMetas();
+    }
+
+    mostrarMetas();
+}
+
+// EXIBIR METAS
+
+function mostrarMetas() {
+
+    const lista = document.getElementById('listaMetas');
+
+    lista.innerHTML = '';
+
+    if (metas.length === 0) {
+        lista.innerHTML = `
+            <p class="vazio">
+                Você ainda não possui metas cadastradas.
+                Crie sua primeira meta!
+            </p>
+        `;
+        return;
+    }
+
+    metas.forEach(meta => {
+
+        const porcentagem = meta.valor > 0
+            ? Math.min((meta.guardado / meta.valor) * 100, 100)
+            : 0;
+
+        const porcentagemFormatada = Math.round(porcentagem);
+
+        const cartao = document.createElement('article');
+        cartao.className = 'meta';
+
+        const topo = document.createElement('div');
+        topo.className = 'meta-topo';
+
+        const titulo = document.createElement('h3');
+        titulo.textContent = meta.nome;
+
+        const percentual = document.createElement('span');
+        percentual.className = 'porcentagem';
+        percentual.textContent = porcentagemFormatada + '%';
+
+        topo.appendChild(titulo);
+        topo.appendChild(percentual);
+
+        const valor = document.createElement('p');
+        valor.className = 'valor-meta';
+
+        valor.textContent =
+            formatarMoeda(meta.guardado) +
+            ' de ' +
+            formatarMoeda(meta.valor);
+
+        const barraFundo = document.createElement('div');
+        barraFundo.className = 'barra-fundo';
+
+        const barra = document.createElement('div');
+        barra.className = 'barra-progresso';
+        barra.style.width = porcentagem + '%';
+
+        barraFundo.appendChild(barra);
+
+        cartao.appendChild(topo);
+        cartao.appendChild(valor);
+        cartao.appendChild(barraFundo);
+
+        if (meta.prazo) {
+            const prazo = document.createElement('p');
+            prazo.className = 'prazo-meta';
+            prazo.textContent = 'Prazo: ' + meta.prazo;
+            cartao.appendChild(prazo);
+        }
+
+        // ÁREA DOS BOTÕES
+
+        const acoes = document.createElement('div');
+        acoes.className = 'acoes-meta';
+
+        // BOTÃO ADICIONAR VALOR
+
+        const adicionarValor = document.createElement('button');
+        adicionarValor.className = 'botao-valor';
+        adicionarValor.textContent = '+ ADICIONAR VALOR';
+
+        adicionarValor.addEventListener('click', function() {
+            adicionarDinheiro(meta.id);
+        });
+
+        // BOTÃO EXCLUIR
+
+        const excluir = document.createElement('button');
+        excluir.className = 'botao-excluir';
+        excluir.textContent = 'Excluir meta';
+
+        excluir.addEventListener('click', function() {
+            excluirMeta(meta.id);
+        });
+
+        acoes.appendChild(adicionarValor);
+        acoes.appendChild(excluir);
+
+        cartao.appendChild(acoes);
+
+        lista.appendChild(cartao);
+
+    });
+}
+
+// ADICIONAR DINHEIRO EM UMA META EXISTENTE
+
+function adicionarDinheiro(id) {
+
+    const meta = metas.find(item => item.id === id);
+
+    if (!meta) {
+        alert('Meta não encontrada.');
+        return;
+    }
+
+    if (meta.guardado >= meta.valor) {
+        alert('Parabéns! Você já atingiu o valor dessa meta.');
+        return;
+    }
+
+    const restante = meta.valor - meta.guardado;
+
+    const entrada = prompt(
+        'Meta: ' + meta.nome +
+        '\nValor atual: ' + formatarMoeda(meta.guardado) +
+        '\nFalta: ' + formatarMoeda(restante) +
+        '\n\nQuanto deseja adicionar? (R$)'
+    );
+
+    if (entrada === null) {
+        return;
+    }
+
+    // Aceita valores com vírgula ou ponto
+
+    const valorDigitado = entrada.trim().replace(',', '.');
+    const novoValor = Number(valorDigitado);
+
+    if (!Number.isFinite(novoValor) || novoValor <= 0) {
+        alert('Digite um valor válido e maior que zero.');
+        return;
+    }
+
+    if (novoValor > restante) {
+        alert(
+            'Esse valor ultrapassa o objetivo da meta.\n' +
+            'Você ainda precisa de ' + formatarMoeda(restante) + '.'
+        );
+        return;
+    }
+
+    meta.guardado = Math.round((meta.guardado + novoValor) * 100) / 100;
+
+    salvarMetas();
+    mostrarMetas();
+
+    if (meta.guardado >= meta.valor) {
+        alert('Parabéns! Você alcançou sua meta: ' + meta.nome + '!');
+    } else {
+        alert(
+            'Valor adicionado com sucesso!\n' +
+            'Total guardado: ' + formatarMoeda(meta.guardado)
+        );
+    }
+}
+
+// ADICIONAR NOVA META
+
+document.getElementById('formMeta').addEventListener('submit', function(event) {
+
+    event.preventDefault();
+
+    const nome = document.getElementById('nomeMeta').value.trim();
+    const valor = Number(document.getElementById('valorMeta').value);
+    const guardado = Number(document.getElementById('valorGuardado').value);
+    const prazo = document.getElementById('prazo').value.trim();
+
+    if (!nome || !Number.isFinite(valor) || !Number.isFinite(guardado)
+        || valor <= 0 || guardado < 0) {
+
+        alert('Preencha os campos corretamente.');
+        return;
+    }
+
+    if (guardado > valor) {
+        alert('O valor guardado não pode ser maior que o valor da meta.');
+        return;
+    }
+
+    const novaMeta = {
+        id: Date.now(),
+        nome: nome,
+        valor: valor,
+        guardado: guardado,
+        prazo: prazo
+    };
+
+    metas.push(novaMeta);
+
+    salvarMetas();
+    mostrarMetas();
+
+    document.getElementById('formMeta').reset();
+    document.getElementById('valorGuardado').value = 0;
+
+    alert('Meta adicionada com sucesso!');
+});
+
+// EXCLUIR META
+
+function excluirMeta(id) {
+
+    const confirmar = confirm('Deseja excluir esta meta?');
+
+    if (!confirmar) return;
+
+    metas = metas.filter(meta => meta.id !== id);
+
+    salvarMetas();
+    mostrarMetas();
+}
+
+// INICIAR SISTEMA
+
+carregarMetas();
+
+</script>
+
+</body>
+</html>

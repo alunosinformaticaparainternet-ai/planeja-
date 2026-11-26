@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANEJA+ | Acesso</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --azul: #173448;
+    --verde: #199783;
+    --verde-claro: #e0f4ee;
+    --cinza: #687b86;
+    --borda: #dce9e6;
+    --fundo: #f7faf9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--fundo);
+    color: var(--azul);
+    min-height: 100vh;
+}
+
+/* CABEÇALHO */
+
+header {
+    height: 70px;
+    padding: 0 7%;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo-icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--verde);
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+}
+
+/* ÁREA PRINCIPAL */
+
+main {
+    min-height: calc(100vh - 125px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px 20px;
+}
+
+.conteudo {
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    border: 2px solid var(--borda);
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+/* LADO INFORMATIVO */
+
+.lado-esquerdo {
+    background: var(--azul);
+    color: white;
+    padding: 55px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sobretitulo {
+    color: #8de0ca;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.lado-esquerdo h1 {
+    font-size: 35px;
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.lado-esquerdo > p {
+    font-size: 15px;
+    color: #d6e4e9;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.beneficio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.icone-beneficio {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--verde);
+    display: grid;
+    place-items: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* LADO DOS FORMULÁRIOS */
+
+.lado-direito {
+    padding: 45px 40px;
+}
+
+.abas {
+    display: flex;
+    background: var(--fundo);
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.aba {
+    width: 50%;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: var(--cinza);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.aba.ativa {
+    background: var(--verde);
+    color: white;
+}
+
+.formulario {
+    display: none;
+}
+
+.formulario.ativo {
+    display: block;
+}
+
+.formulario h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.subtitulo {
+    font-size: 13px;
+    color: var(--cinza);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* CAMPOS */
+
+.campo {
+    margin-bottom: 17px;
+}
+
+.campo label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--borda);
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--azul);
+    background: white;
+    transition: .2s;
+}
+
+.campo input:focus {
+    border-color: var(--verde);
+}
+
+.campo input::placeholder {
+    color: #a0adb3;
+}
+
+.senha-container {
+    position: relative;
+}
+
+.senha-container input {
+    padding-right: 65px;
+}
+
+.mostrar-senha {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* BOTÕES */
+
+.botao-entrar {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: var(--verde);
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: .2s;
+}
+
+.botao-entrar:hover {
+    background: #117d6c;
+}
+
+.alternativa {
+    text-align: center;
+    font-size: 13px;
+    color: var(--cinza);
+    margin-top: 22px;
+}
+
+.alternativa button {
+    border: none;
+    background: transparent;
+    color: var(--verde);
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* MENSAGENS */
+
+.mensagem {
+    display: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.mensagem.erro {
+    display: block;
+    background: #fff0ee;
+    color: #c34f43;
+}
+
+.mensagem.sucesso {
+    display: block;
+    background: var(--verde-claro);
+    color: #117d6c;
+}
+
+/* RODAPÉ */
+
+footer {
+    background: var(--azul);
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-size: 12px;
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width: 750px) {
+
+    .conteudo {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+    }
+
+    .lado-esquerdo {
+        padding: 35px 30px;
+    }
+
+    .lado-esquerdo h1 {
+        font-size: 28px;
+    }
+
+    .lado-esquerdo > p {
+        margin-bottom: 20px;
+    }
+
+    .beneficios {
+        gap: 12px;
+    }
+
+    .lado-direito {
+        padding: 35px 25px;
+    }
+}
+
+@media(max-width: 400px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    main {
+        padding: 25px 12px;
+    }
+
+    .lado-esquerdo,
+    .lado-direito {
+        padding: 28px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <span class="logo-icone">R$</span>
+        PLANEJA+
+    </a>
+
+</header>
+
+<main>
+
+    <div class="conteudo">
+
+        <!-- LADO INFORMATIVO -->
+
+        <section class="lado-esquerdo">
+
+            <span class="sobretitulo">
+                EDUCAÇÃO FINANCEIRA PARA TODOS
+            </span>
+
+            <h1>
+                Seu dinheiro,<br>
+                suas escolhas.
+            </h1>
+
+            <p>
+                Organize sua renda, acompanhe suas metas
+                e construa um futuro financeiro mais tranquilo.
+                Comece hoje mesmo!
+            </p>
+
+            <div class="beneficios">
+
+                <div class="beneficio">
+                    <span class="icone-beneficio">✓</span>
+                    Organize seu orçamento
+                </div>
+
+                <div class="beneficio">
+                    <span class="icone-beneficio">✓</span>
+                    Acompanhe suas economias
+                </div>
+
+                <div class="beneficio">
+                    <span class="icone-beneficio">✓</span>
+                    Realize seus objetivos
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FORMULÁRIOS -->
+
+        <section class="lado-direito">
+
+            <div class="abas">
+
+                <button
+                    class="aba ativa"
+                    id="abaLogin"
+                    onclick="mostrarFormulario('login')">
+                    ENTRAR
+                </button>
+
+                <button
+                    class="aba"
+                    id="abaCadastro"
+                    onclick="mostrarFormulario('cadastro')">
+                    CADASTRAR
+                </button>
+
+            </div>
+
+            <!-- FORMULÁRIO LOGIN -->
+
+            <form class="formulario ativo" id="formLogin">
+
+                <h2>Bem-vindo de volta!</h2>
+
+                <p class="subtitulo">
+                    Entre na sua conta para continuar seu planejamento.
+                </p>
+
+                <div class="mensagem" id="mensagemLogin"></div>
+
+                <div class="campo">
+
+                    <label for="emailLogin">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="emailLogin"
+                        value="teste@email.com"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="senhaLogin">Senha</label>
+
+                    <div class="senha-container">
+
+                        <input
+                            type="password"
+                            id="senhaLogin"
+                            value="teste123"
+                            placeholder="Digite sua senha"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="mostrar-senha"
+                            onclick="alternarSenha('senhaLogin', this)">
+                            Mostrar
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="botao-entrar">
+                    ENTRAR NA MINHA CONTA
+                </button>
+
+                <p class="alternativa">
+                    Ainda não possui uma conta?
+
+                    <button
+                        type="button"
+                        onclick="mostrarFormulario('cadastro')">
+                        Cadastre-se
+                    </button>
+                </p>
+
+            </form>
+
+            <!-- FORMULÁRIO CADASTRO -->
+
+            <form class="formulario" id="formCadastro">
+
+                <h2>Crie sua conta!</h2>
+
+                <p class="subtitulo">
+                    Cadastre-se gratuitamente e comece a organizar suas finanças.
+                </p>
+
+                <div class="mensagem" id="mensagemCadastro"></div>
+
+                <div class="campo">
+
+                    <label for="nomeCadastro">Nome completo</label>
+
+                    <input
+                        type="text"
+                        id="nomeCadastro"
+                        placeholder="Digite seu nome"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="emailCadastro">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="emailCadastro"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="senhaCadastro">Criar senha</label>
+
+                    <div class="senha-container">
+
+                        <input
+                            type="password"
+                            id="senhaCadastro"
+                            placeholder="Crie uma senha"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="mostrar-senha"
+                            onclick="alternarSenha('senhaCadastro', this)">
+                            Mostrar
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="confirmarSenha">Confirmar senha</label>
+
+                    <div class="senha-container">
+
+                        <input
+                            type="password"
+                            id="confirmarSenha"
+                            placeholder="Digite sua senha novamente"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="mostrar-senha"
+                            onclick="alternarSenha('confirmarSenha', this)">
+                            Mostrar
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="botao-entrar">
+                    CRIAR MINHA CONTA
+                </button>
+
+                <p class="alternativa">
+                    Já possui uma conta?
+
+                    <button
+                        type="button"
+                        onclick="mostrarFormulario('login')">
+                        Entrar
+                    </button>
+                </p>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+<footer>
+    Projeto de Administração • Centro de Ensino Cidade Operária 2 • São Luís – MA
+</footer>
+
+<script>
+
+// ALTERNAR ENTRE LOGIN E CADASTRO
+
+function mostrarFormulario(tipo) {
+
+    const formLogin = document.getElementById('formLogin');
+    const formCadastro = document.getElementById('formCadastro');
+
+    const abaLogin = document.getElementById('abaLogin');
+    const abaCadastro = document.getElementById('abaCadastro');
+
+    if (tipo === 'login') {
+
+        formLogin.classList.add('ativo');
+        formCadastro.classList.remove('ativo');
+
+        abaLogin.classList.add('ativa');
+        abaCadastro.classList.remove('ativa');
+
+    } else {
+
+        formCadastro.classList.add('ativo');
+        formLogin.classList.remove('ativo');
+
+        abaCadastro.classList.add('ativa');
+        abaLogin.classList.remove('ativa');
+
+    }
+
+}
+
+// MOSTRAR E OCULTAR SENHA
+
+function alternarSenha(id, botao) {
+
+    const campo = document.getElementById(id);
+
+    if (campo.type === 'password') {
+
+        campo.type = 'text';
+        botao.textContent = 'Ocultar';
+
+    } else {
+
+        campo.type = 'password';
+        botao.textContent = 'Mostrar';
+
+    }
+
+}
+
+// EXIBIR MENSAGENS
+
+function exibirMensagem(id, texto, tipo) {
+
+    const mensagem = document.getElementById(id);
+
+    mensagem.textContent = texto;
+    mensagem.className = 'mensagem ' + tipo;
+
+}
+
+// CADASTRO DE USUÁRIOS
+
+document.getElementById('formCadastro').addEventListener('submit', function(event) {
+
+    event.preventDefault();
+
+    const nome = document.getElementById('nomeCadastro').value.trim();
+
+    const email = document.getElementById('emailCadastro').value.trim().toLowerCase();
+
+    const senha = document.getElementById('senhaCadastro').value;
+
+    const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+    if (nome.length < 3) {
+
+        exibirMensagem(
+            'mensagemCadastro',
+            'Digite seu nome completo corretamente.',
+            'erro'
+        );
+
+        return;
+    }
+
+    if (senha.length < 6) {
+
+        exibirMensagem(
+            'mensagemCadastro',
+            'A senha precisa ter pelo menos 6 caracteres.',
+            'erro'
+        );
+
+        return;
+    }
+
+    if (senha !== confirmarSenha) {
+
+        exibirMensagem(
+            'mensagemCadastro',
+            'As senhas não são iguais. Verifique e tente novamente.',
+            'erro'
+        );
+
+        return;
+    }
+
+    // BUSCAR USUÁRIOS SALVOS
+
+    let usuarios = JSON.parse(localStorage.getItem('planeja_usuarios')) || [];
+
+    // VERIFICAR E-MAIL
+
+    const emailExiste = usuarios.some(usuario => usuario.email === email);
+
+    if (emailExiste) {
+
+        exibirMensagem(
+            'mensagemCadastro',
+            'Este e-mail já está cadastrado. Faça login.',
+            'erro'
+        );
+
+        return;
+    }
+
+    // CRIAR USUÁRIO
+
+    const novoUsuario = {
+        id: Date.now(),
+        nome: nome,
+        email: email,
+        senha: senha
+    };
+
+    usuarios.push(novoUsuario);
+
+    localStorage.setItem('planeja_usuarios', JSON.stringify(usuarios));
+
+    exibirMensagem(
+        'mensagemCadastro',
+        'Cadastro realizado com sucesso! Agora você pode entrar.',
+        'sucesso'
+    );
+
+    document.getElementById('formCadastro').reset();
+
+    setTimeout(function() {
+
+        mostrarFormulario('login');
+
+        document.getElementById('emailLogin').value = email;
+
+    }, 1500);
+
+});
+
+// LOGIN DE USUÁRIOS
+
+document.getElementById('formLogin').addEventListener('submit', function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById('emailLogin').value.trim().toLowerCase();
+
+    const senha = document.getElementById('senhaLogin').value;
+
+    // CONTA DE TESTE
+
+    const emailTeste = 'teste@email.com';
+    const senhaTeste = 'teste123';
+
+    // BUSCAR USUÁRIOS CADASTRADOS
+
+    const usuarios = JSON.parse(localStorage.getItem('planeja_usuarios')) || [];
+
+    // VERIFICAR A CONTA DE TESTE OU UM USUÁRIO CADASTRADO
+
+    let usuarioEncontrado;
+
+    if (email === emailTeste && senha === senhaTeste) {
+
+        usuarioEncontrado = {
+            id: 'conta-teste',
+            nome: 'Usuário de Teste',
+            email: emailTeste
+        };
+
+    } else {
+
+        usuarioEncontrado = usuarios.find(usuario =>
+            usuario.email === email && usuario.senha === senha
+        );
+
+    }
+
+    if (!usuarioEncontrado) {
+
+        exibirMensagem(
+            'mensagemLogin',
+            'E-mail ou senha incorretos. Verifique seus dados.',
+            'erro'
+        );
+
+        return;
+    }
+
+    // SALVAR USUÁRIO LOGADO
+
+    localStorage.setItem(
+        'planeja_usuario_logado',
+        JSON.stringify({
+            id: usuarioEncontrado.id,
+            nome: usuarioEncontrado.nome,
+            email: usuarioEncontrado.email
+        })
+    );
+
+    exibirMensagem(
+        'mensagemLogin',
+        'Login realizado com sucesso! Redirecionando...',
+        'sucesso'
+    );
+
+    // IR PARA A PÁGINA INICIAL
+
+    setTimeout(function() {
+
+        window.location.href = 'inicio.html';
+
+    }, 1000);
+
+});
+
+</script>
+
+</body>
+</html>

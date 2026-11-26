@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANEJA+ | Dicas Financeiras</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --azul: #173448;
+    --verde: #199783;
+    --verde-claro: #e0f4ee;
+    --amarelo: #f8b943;
+    --azul-claro: #6685bd;
+    --cinza: #687b86;
+    --borda: #dce9e6;
+    --branco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--branco);
+    color: var(--azul);
+}
+
+/* CABEÇALHO */
+
+header {
+    min-height: 68px;
+    padding: 0 5%;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo-icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--verde);
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: #8de0ca;
+}
+
+.menu-mobile {
+    display: none;
+    border: none;
+    background: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+/* TÍTULO */
+
+.apresentacao {
+    padding: 45px 0 35px;
+}
+
+.sobretitulo {
+    color: var(--verde);
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+h1 {
+    color: var(--azul);
+    font-size: clamp(32px, 4vw, 44px);
+    margin-bottom: 12px;
+}
+
+.descricao {
+    color: var(--cinza);
+    font-size: 19px;
+    line-height: 1.5;
+}
+
+/* CARTÕES DE DICAS */
+
+.lista-dicas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding-bottom: 35px;
+}
+
+.cartao {
+    min-height: 145px;
+    border: 2px solid var(--borda);
+    border-radius: 20px;
+    padding: 23px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    transition: .25s;
+}
+
+.cartao:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(23, 52, 72, .08);
+    border-color: var(--verde);
+}
+
+.numero {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.verde {
+    background: var(--verde);
+    color: white;
+}
+
+.amarelo {
+    background: var(--amarelo);
+    color: var(--azul);
+}
+
+.azul-claro {
+    background: var(--azul-claro);
+    color: white;
+}
+
+.verde-claro {
+    background: var(--verde-claro);
+    color: var(--verde);
+}
+
+.conteudo h2 {
+    font-size: 19px;
+    color: var(--azul);
+    margin-bottom: 8px;
+}
+
+.conteudo p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--cinza);
+}
+
+/* DICA DO DIA */
+
+.dica-dia {
+    background: var(--verde-claro);
+    border-radius: 18px;
+    padding: 23px 28px;
+    margin-bottom: 35px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.icone-dica {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.texto-dica strong {
+    color: var(--verde);
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.texto-dica p {
+    color: var(--azul);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* RODAPÉ */
+
+footer {
+    background: var(--azul);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 750px) {
+
+    .lista-dicas {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .cartao {
+        min-height: 125px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    header {
+        min-height: 65px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .menu-mobile {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: var(--azul);
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    nav.aberto {
+        display: flex;
+    }
+
+    .apresentacao {
+        padding: 32px 0;
+    }
+
+    .sobretitulo {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .descricao {
+        font-size: 16px;
+    }
+
+    .cartao {
+        padding: 18px;
+        gap: 15px;
+    }
+
+    .numero {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .conteudo h2 {
+        font-size: 17px;
+    }
+
+    .conteudo p {
+        font-size: 14px;
+    }
+
+    .dica-dia {
+        padding: 19px;
+        align-items: flex-start;
+    }
+
+    .texto-dica p {
+        font-size: 15px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- CABEÇALHO -->
+
+<header>
+
+    <a href="index.html" class="logo">
+        <span class="logo-icone">R$</span>
+        PLANEJA+
+    </a>
+
+    <button class="menu-mobile" id="menuMobile">☰</button>
+
+    <nav id="navegacao">
+        <a href="inicio.html">Início</a>
+        <a href="metas.html">Metas</a>
+        <a href="dicas.html">Dicas</a>
+        <a href="orçamento.html">Orçamento</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <!-- APRESENTAÇÃO -->
+
+    <section class="apresentacao">
+
+        <p class="sobretitulo">DICAS</p>
+
+        <h1>Pequenas atitudes que ajudam seu dinheiro render mais</h1>
+
+    </section>
+
+    <!-- LISTA DE DICAS -->
+
+    <section class="lista-dicas">
+
+        <article class="cartao">
+
+            <span class="numero verde">01</span>
+
+            <div class="conteudo">
+                <h2>Anote seus gastos</h2>
+
+                <p>
+                    Anote tudo o que entra e sai durante o mês
+                    para enxergar para onde vai o dinheiro.
+                </p>
+            </div>
+
+        </article>
+
+        <article class="cartao">
+
+            <span class="numero amarelo">02</span>
+
+            <div class="conteudo">
+                <h2>Separe necessidades e desejos</h2>
+
+                <p>
+                    Antes de comprar, pergunte:
+                    “eu preciso disso agora ou posso esperar?”
+                </p>
+            </div>
+
+        </article>
+
+        <article class="cartao">
+
+            <span class="numero azul-claro">03</span>
+
+            <div class="conteudo">
+                <h2>Evite compras por impulso</h2>
+
+                <p>
+                    Espere 24 horas antes de comprar algo
+                    que não estava planejado.
+                </p>
+            </div>
+
+        </article>
+
+        <article class="cartao">
+
+            <span class="numero verde-claro">04</span>
+
+            <div class="conteudo">
+                <h2>Reserve para imprevistos</h2>
+
+                <p>
+                    Guarde uma pequena parte da renda
+                    todo mês para emergências.
+                </p>
+            </div>
+
+        </article>
+
+        <article class="cartao">
+
+            <span class="numero amarelo">05</span>
+
+            <div class="conteudo">
+                <h2>Compare preços</h2>
+
+                <p>
+                    Pesquise antes de comprar;
+                    pequenas diferenças ajudam a economizar.
+                </p>
+            </div>
+
+        </article>
+
+        <article class="cartao">
+
+            <span class="numero verde">06</span>
+
+            <div class="conteudo">
+                <h2>Envolva a família</h2>
+
+                <p>
+                    Conversem sobre as metas e decisões
+                    financeiras juntos.
+                </p>
+            </div>
+
+        </article>
+
+    </section>
+
+    <!-- DICA DO DIA -->
+
+    <section class="dica-dia">
+
+        <div class="icone-dica">!</div>
+
+        <div class="texto-dica">
+
+            <strong>DICA DO DIA</strong>
+
+            <p>
+                Antes de comprar, pergunte:
+                “eu preciso disso agora?”
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- RODAPÉ -->
+
+<footer>
+    Projeto de Administração • Centro de Ensino Cidade Operária 2 • São Luís – MA
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+const menuMobile = document.getElementById('menuMobile');
+const navegacao = document.getElementById('navegacao');
+
+menuMobile.addEventListener('click', function() {
+
+    navegacao.classList.toggle('aberto');
+
+    if (navegacao.classList.contains('aberto')) {
+        menuMobile.textContent = '✕';
+    } else {
+        menuMobile.textContent = '☰';
+    }
+
+});
+
+navegacao.querySelectorAll('a').forEach(function(link) {
+
+    link.addEventListener('click', function() {
+
+        navegacao.classList.remove('aberto');
+
+        menuMobile.textContent = '☰';
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

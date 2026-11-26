@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANEJA+ | Educação Financeira</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --azul: #173448;
+    --verde: #199783;
+    --verde-claro: #e0f4ee;
+    --amarelo: #f8b943;
+    --azul-claro: #6685bd;
+    --texto: #173448;
+    --cinza: #687b86;
+    --borda: #dce9e6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--texto);
+    background: white;
+    line-height: 1.5;
+}
+
+/* CABEÇALHO */
+
+.cabecalho {
+    min-height: 66px;
+    padding: 0 4.2%;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: white;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.marca-icone {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--verde);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.navegacao a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    transition: color .2s;
+}
+
+.navegacao a:hover {
+    color: #8de0ca;
+}
+
+/* BOTÃO SAIR */
+
+.navegacao .link-sair {
+    background: #c94b4b;
+    padding: 9px 16px;
+    border-radius: 8px;
+    color: white;
+    transition: .2s;
+}
+
+.navegacao .link-sair:hover {
+    background: #a83232;
+    color: white;
+}
+
+.botao-menu {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+    width: min(1440px, 100%);
+    margin: auto;
+    padding: 0 5.1%;
+}
+
+.inicio {
+    min-height: 390px;
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    align-items: center;
+    gap: 30px;
+    padding: 42px 4px 28px;
+}
+
+.chamada {
+    max-width: 690px;
+}
+
+.sobretitulo {
+    color: var(--verde);
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 17px;
+}
+
+h1 {
+    color: var(--azul);
+    font-size: clamp(34px, 4vw, 49px);
+    line-height: 1.14;
+    margin-bottom: 30px;
+}
+
+.descricao {
+    color: var(--cinza);
+    font-size: 22px;
+    line-height: 1.3;
+    max-width: 690px;
+    margin-bottom: 34px;
+}
+
+.botao-principal {
+    display: inline-block;
+    padding: 17px 29px;
+    border-radius: 10px;
+    background: var(--verde);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.botao-principal:hover {
+    background: #117d6c;
+    transform: translateY(-2px);
+}
+
+.legenda {
+    color: var(--cinza);
+    font-size: 16px;
+    margin: 11px 0 0 10px;
+}
+
+/* ILUSTRAÇÃO */
+
+.ilustracao {
+    min-height: 315px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.anel {
+    width: min(100%, 450px);
+    aspect-ratio: 1.48;
+    border-radius: 50%;
+    background: var(--verde-claro);
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.anel-centro {
+    width: 60%;
+    height: 78%;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 38px;
+    text-align: center;
+}
+
+.anel-centro strong {
+    color: var(--verde);
+    font-size: 52px;
+    line-height: 1;
+}
+
+.anel-centro span {
+    color: var(--azul);
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.bolinha {
+    position: absolute;
+    width: 67px;
+    height: 67px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.bolinha-dolar {
+    background: var(--amarelo);
+    top: 15%;
+    left: 0;
+}
+
+.bolinha-mais {
+    background: var(--verde);
+    color: white;
+    top: 8%;
+    right: 0;
+}
+
+.bolinha-menor {
+    width: 46px;
+    height: 46px;
+    background: var(--amarelo);
+    right: 9%;
+    bottom: 8%;
+}
+
+/* PASSOS */
+
+.secao-passos {
+    padding: 5px 0 30px;
+}
+
+.titulo-secao {
+    font-size: 27px;
+    margin: 0 0 17px 6px;
+    color: var(--azul);
+}
+
+.cartoes-passos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
+}
+
+.cartao-passo {
+    min-height: 148px;
+    padding: 23px;
+    border: 2px solid var(--borda);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: white;
+}
+
+.numero {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.numero.verde {
+    background: var(--verde);
+}
+
+.numero.amarelo {
+    background: var(--amarelo);
+    color: var(--azul);
+}
+
+.numero.azul {
+    background: var(--azul-claro);
+}
+
+.cartao-passo h3 {
+    font-size: 23px;
+    margin-bottom: 7px;
+}
+
+.cartao-passo p {
+    color: var(--cinza);
+    font-size: 16px;
+    line-height: 1.35;
+}
+
+/* ORÇAMENTO E DICAS */
+
+.secao-inferior {
+    display: grid;
+    grid-template-columns: 1.8fr 1.05fr;
+    gap: 32px;
+    padding: 0 0 15px;
+}
+
+.orcamento {
+    min-height: 142px;
+    padding: 18px 35px;
+    background: var(--azul);
+    color: white;
+    border-radius: 24px;
+}
+
+.orcamento h2 {
+    font-size: 18px;
+    margin-bottom: 17px;
+}
+
+.valores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.valor span {
+    display: block;
+    color: #c8d9df;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.valor strong {
+    font-size: 27px;
+    line-height: 1.2;
+}
+
+.valor.saldo strong {
+    color: #69dfb4;
+}
+
+.dica {
+    min-height: 142px;
+    padding: 18px 35px;
+    border-radius: 24px;
+    background: var(--verde-claro);
+}
+
+.dica h2 {
+    color: var(--verde);
+    font-size: 16px;
+    margin-bottom: 13px;
+}
+
+.dica p {
+    color: var(--azul);
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+footer {
+    text-align: center;
+    color: var(--cinza);
+    font-size: 13px;
+    padding: 0 12px 17px;
+}
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+    main {
+        padding: 0 4%;
+    }
+
+    .inicio {
+        grid-template-columns: 1fr .8fr;
+        gap: 15px;
+    }
+
+    .descricao {
+        font-size: 19px;
+    }
+
+    .cartoes-passos {
+        gap: 15px;
+    }
+
+    .cartao-passo {
+        padding: 17px;
+        gap: 13px;
+    }
+
+    .cartao-passo h3 {
+        font-size: 19px;
+    }
+
+    .cartao-passo p {
+        font-size: 14px;
+    }
+
+    .secao-inferior {
+        gap: 18px;
+    }
+
+    .orcamento,
+    .dica {
+        padding: 18px 22px;
+    }
+
+    .valor strong {
+        font-size: 22px;
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 650px) {
+    .cabecalho {
+        min-height: 62px;
+        padding: 0 5%;
+    }
+
+    .marca {
+        font-size: 21px;
+    }
+
+    .botao-menu {
+        display: block;
+    }
+
+    .navegacao {
+        display: none;
+        position: absolute;
+        z-index: 5;
+        top: 62px;
+        left: 0;
+        right: 0;
+        padding: 18px 5%;
+        background: var(--azul);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 17px;
+    }
+
+    .navegacao.aberta {
+        display: flex;
+    }
+
+    .navegacao .link-sair {
+        display: inline-block;
+    }
+
+    .inicio {
+        grid-template-columns: 1fr;
+        padding-top: 38px;
+    }
+
+    .sobretitulo {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 37px;
+        margin-bottom: 18px;
+    }
+
+    .descricao {
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+
+    .ilustracao {
+        min-height: 260px;
+        margin: 0 5px;
+    }
+
+    .anel {
+        width: min(90%, 370px);
+    }
+
+    .anel-centro {
+        gap: 25px;
+    }
+
+    .anel-centro strong {
+        font-size: 43px;
+    }
+
+    .anel-centro span {
+        font-size: 11px;
+    }
+
+    .bolinha {
+        width: 53px;
+        height: 53px;
+        font-size: 23px;
+    }
+
+    .bolinha-menor {
+        width: 38px;
+        height: 38px;
+    }
+
+    .secao-passos {
+        padding-top: 10px;
+    }
+
+    .titulo-secao {
+        font-size: 23px;
+    }
+
+    .cartoes-passos {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .cartao-passo {
+        min-height: 115px;
+        padding: 20px;
+    }
+
+    .cartao-passo h3 {
+        font-size: 20px;
+    }
+
+    .cartao-passo p {
+        font-size: 15px;
+    }
+
+    .secao-inferior {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding-top: 5px;
+    }
+
+    .orcamento {
+        padding: 20px;
+    }
+
+    .valores {
+        gap: 8px;
+    }
+
+    .valor span {
+        font-size: 12px;
+    }
+
+    .valor strong {
+        font-size: 19px;
+    }
+
+    .dica {
+        padding: 20px;
+    }
+
+    .dica p {
+        font-size: 19px;
+    }
+
+    footer {
+        font-size: 11px;
+        padding-top: 8px;
+    }
+}
+
+@media (max-width: 360px) {
+    .valor strong {
+        font-size: 16px;
+    }
+
+    .anel-centro span {
+        font-size: 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="cabecalho">
+
+    <a class="marca" href="#inicio">
+        <span class="marca-icone">R$</span>
+        <span>PLANEJA+</span>
+    </a>
+
+    <button class="botao-menu" id="botaoMenu"
+        aria-label="Abrir menu" aria-expanded="false">
+        ☰
+    </button>
+
+    <nav class="navegacao" id="navegacao">
+        <a href="inicio.html">Início</a>
+        <a href="metas.html">Metas</a>
+        <a href="dicas.html">Dicas</a>
+        <a href="orçamento.html">Orçamento</a>
+
+        <!-- OPÇÃO DE SAIR DA CONTA -->
+        <a href="index.html" class="link-sair" id="linkSair">
+            ↪ Sair da conta
+        </a>
+    </nav>
+
+</header>
+
+<main>
+
+    <section class="inicio" id="inicio">
+
+        <div class="chamada">
+
+            <p class="sobretitulo">
+                EDUCAÇÃO FINANCEIRA PARA TODOS
+            </p>
+
+            <h1>Seu dinheiro, suas escolhas.</h1>
+
+            <p class="descricao">
+                Aprenda a organizar a renda, priorizar o que importa
+                e planejar um futuro mais tranquilo — um passo de cada vez.
+            </p>
+
+            <a class="botao-principal" href="orçamento.html">
+                COMECE A SE ORGANIZAR
+            </a>
+
+            <p class="legenda">
+                Simples • Prático • Gratuito
+            </p>
+
+        </div>
+
+        <div class="ilustracao">
+
+            <span class="bolinha bolinha-dolar">$</span>
+            <span class="bolinha bolinha-mais">+</span>
+
+            <div class="anel">
+
+                <div class="anel-centro">
+                    <strong>R$</strong>
+                    <span>PLANEJE • ECONOMIZE • REALIZE</span>
+                </div>
+
+            </div>
+
+            <span class="bolinha bolinha-menor"></span>
+
+        </div>
+
+    </section>
+
+    <section class="secao-passos" id="planejamento">
+
+        <h2 class="titulo-secao">
+            COMECE COM 3 PASSOS
+        </h2>
+
+        <div class="cartoes-passos">
+
+            <article class="cartao-passo">
+
+                <span class="numero verde">01</span>
+
+                <div>
+                    <h3>Anote tudo</h3>
+                    <p>Registre quanto entra e quanto sai por mês.</p>
+                </div>
+
+            </article>
+
+            <article class="cartao-passo">
+
+                <span class="numero amarelo">02</span>
+
+                <div>
+                    <h3>Defina prioridades</h3>
+                    <p>Separe necessidades de desejos que podem esperar.</p>
+                </div>
+
+            </article>
+
+            <article class="cartao-passo">
+
+                <span class="numero azul">03</span>
+
+                <div>
+                    <h3>Planeje o futuro</h3>
+                    <p>Se possível, reserve um valor para imprevistos.</p>
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <section class="secao-inferior" id="orcamento">
+
+        <div class="orcamento">
+
+            <h2>EXEMPLO DE ORÇAMENTO MENSAL</h2>
+
+            <div class="valores">
+
+                <div class="valor">
+                    <span>Renda</span>
+                    <strong>R$ 2.500</strong>
+                </div>
+
+                <div class="valor">
+                    <span>Despesas</span>
+                    <strong>R$ 2.200</strong>
+                </div>
+
+                <div class="valor saldo">
+                    <span>Saldo disponível</span>
+                    <strong>R$ 300</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <aside class="dica" id="dicas">
+
+            <h2>DICA DO DIA</h2>
+
+            <p>
+                Antes de comprar, pergunte:
+                eu preciso disso agora?
+            </p>
+
+        </aside>
+
+    </section>
+
+</main>
+
+<footer>
+    Projeto de Administração • Centro de Ensino Cidade Operária 2 • São Luís – MA
+</footer>
+
+<script>
+
+// MENU RESPONSIVO
+
+const botaoMenu = document.getElementById('botaoMenu');
+const navegacao = document.getElementById('navegacao');
+
+botaoMenu.addEventListener('click', function () {
+
+    const menuAberto = navegacao.classList.toggle('aberta');
+
+    botaoMenu.setAttribute('aria-expanded', menuAberto);
+
+    botaoMenu.textContent = menuAberto ? '✕' : '☰';
+
+});
+
+navegacao.querySelectorAll('a').forEach(function (link) {
+
+    link.addEventListener('click', function () {
+
+        navegacao.classList.remove('aberta');
+
+        botaoMenu.setAttribute('aria-expanded', 'false');
+
+        botaoMenu.textContent = '☰';
+
+    });
+
+});
+
+// SAIR DA CONTA
+
+const linkSair = document.getElementById('linkSair');
+
+linkSair.addEventListener('click', function (event) {
+
+    event.preventDefault();
+
+    const confirmar = confirm(
+        'Tem certeza de que deseja sair da sua conta?'
+    );
+
+    if (confirmar) {
+
+        // Encerra a sessão do usuário
+        localStorage.removeItem('planeja_usuario_logado');
+
+        // Retorna para a tela de login
+        window.location.href = 'index.html';
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
